@@ -1,0 +1,24 @@
+{
+  "name": "virtualboardcollabapp",
+  "version": "1.0.0",
+  "description": "Projekt 1 - Virtual-Board 1.0\r Webbtjänster och Molnteknologi, Arcada 2023-2024",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myllymaj/virtualboardcollabapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myllymaj/virtualboardcollabapp/issues"
+  },
+  "homepage": "https://github.com/myllymaj/virtualboardcollabapp#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
