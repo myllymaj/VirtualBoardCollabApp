@@ -1,0 +1,44 @@
+@apiUrl = http://localhost:3030/users   
+@token = {{$dotenv TOKEN}}
+
+###
+GET {{apiUrl}}
+Authorization: Bearer {{token}}
+
+###
+GET {{apiUrl}}/64f9a89c3192a9bf9d0e740a
+Authorization: Bearer {{token}}
+
+### Logga in på /users/login
+POST {{apiUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "testUser@test.com",
+    "password": "test"
+}
+
+### skapa ny användare
+POST {{apiUrl}}
+Content-Type: application/json
+
+{
+    "username": "test",
+    "email": "testUser@test.com",
+    "password": "test"
+}
+
+### 
+PATCH {{apiUrl}}/64f9a89c3192a9bf9d0e740a
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "password": "Password123"
+}
+
+###
+DELETE {{apiUrl}}/64f9aa07539b7df1d8de2397
+Authorization: Bearer {{token}}
+
+###
