@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => {
         
        
 
-        res.send({token: token, msg: "Login successful", userId: user.id})
+        res.send({token: token, msg: "Login successful", userId: user.id,username:user.username})
 
     } catch (error) {
         res.status(500).send({msg: 'ERROR', error: 'Internal server error'})
