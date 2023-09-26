@@ -14,15 +14,5 @@ model User {
   password  String?
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @default(now()) @map("updated_at")
-  boards   Board[]
 }
 
-model Board {
-  id      String     @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  owner     User     @relation(fields: [ownerId], references: [id])
-  ownerId   String @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-}
