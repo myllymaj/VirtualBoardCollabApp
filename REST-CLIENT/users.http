@@ -23,8 +23,8 @@ POST {{apiUrl}}
 Content-Type: application/json
 
 {
-    "username": "test",
-    "email": "testUser@test.com",
+    "username": "tester",
+    "email": "test@test.com",
     "password": "test"
 }
 

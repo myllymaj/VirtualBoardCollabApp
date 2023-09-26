@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
         where: {id: req.params.id}
     })
 
-    console.log("users GET ONE")
+
     res.send({ msg: 'users', user: user })
 }) 
 
@@ -50,6 +50,9 @@ router.post('/login', async (req, res) => {
             username: user.username,
             expiresIn: '1d'
         }, process.env.JWT_SECRET)
+
+        
+       
 
         res.send({token: token, msg: "Login successful", userId: user.id})
 

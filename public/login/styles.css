@@ -3,11 +3,13 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+#userBoards {
+    
+  }
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-image: url('https://source.unsplash.com/random');
+    /*background-image: url('https://source.unsplash.com/random');*/
     background-size: cover;
     margin: 0;
     padding: 0;

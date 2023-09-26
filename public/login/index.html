@@ -26,24 +26,15 @@
         
             <button type="submit">Login</button>
             
-            <button type="button" onclick="toggleRegisterForm()">Register</button>
-            <div id="tokenDisplay"></div>
+        
+            <!--<div id="tokenDisplay"></div>-->
         </form>
     </div>
 
-    <div id="registerPage" class="hidden">
-        <form id="registerForm">
-            <h1>Register</h1>
-            <label for="registerEmail"></label>
-            <input type="email" id="registerEmail" required placeholder="Enter your Email"><br>
-        
-            <label for="registerPassword"></label>
-            <input type="password" id="registerPassword" required placeholder="Enter your Password"><br>
-        
-            <button type="submit">Accept</button>
-            <button type="button" id="returner" onclick="returnToLoginPage()">Return to Login</button>
-        </form>
-    </div>
+    <div id="userBoards" class="hidden">
+        <h2>Board</h2>
+        <ul id="boardsList"></ul>
+      </div>
     
 
 
