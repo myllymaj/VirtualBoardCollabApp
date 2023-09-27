@@ -6,7 +6,7 @@ GET {{apiUrl}}
 Authorization: Bearer {{token}}
 
 ###
-GET {{apiUrl}}/64f9a89c3192a9bf9d0e740a
+GET {{apiUrl}}/6512c8233a0c3364900557a3
 Authorization: Bearer {{token}}
 
 ### Logga in på /users/login
@@ -14,7 +14,7 @@ POST {{apiUrl}}/login
 Content-Type: application/json
 
 {
-    "email": "testUser@test.com",
+    "email": "jake@jake.com",
     "password": "test"
 }
 
@@ -23,9 +23,9 @@ POST {{apiUrl}}
 Content-Type: application/json
 
 {
-    "username": "tester",
-    "email": "test@test.com",
-    "password": "test"
+    "username": "Jake",
+    "email": "jake@jake.com",
+    "password": "jake"
 }
 
 ### 

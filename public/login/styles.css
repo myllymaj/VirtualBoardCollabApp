@@ -2,11 +2,12 @@ body {
     display: block;
     margin: 0px;
 }
+
 nav {
-    background-color: #00d9ff59;
+    background-color: #ffffff59;
     color: white;
-    display: flex;
-    justify-content: space-between;
+
+    border: 6px solid black; 
     align-items: center;
     padding: 10px;
 }
@@ -15,22 +16,25 @@ nav {
 #loginFormContainer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 #loginForm input[type="email"],
 #loginForm input[type="password"] {
     padding: 10px;
-    font-size: 16px; 
+    font-size: 25px;
     border: 1px solid #ccc;
     border-radius: 3px;
 }
+
 #loginForm {
     display: flex;
     gap: 10px;
 }
+
 #loginForm button[type="submit"] {
-    padding: 10px; 
-    font-size: 16px; 
+    padding: 10px;
+    font-size: 25px;
     background-color: #007bff;
     color: white;
     border: none;
@@ -41,19 +45,50 @@ nav {
 #loggedInUser {
     font-weight: bold;
     margin-right: 10px;
-    padding: 10px; 
-    font-size: 25px; 
-color: black;
+    padding: 10px;
+    font-size: 25px;
+    color: black;
     border-radius: 3px;
 }
-#logoutButton{
-    padding: 10px; 
-    font-size: 16px; 
+
+#logoutButton {
+    padding: 10px;
+    font-size: 25px;
     background-color: #ff0000;
     color: white;
     border: none;
     border-radius: 3px;
     cursor: pointer;
     display: none;
+    margin-left: -35%;
 }
 
+#loggedInContent {
+    display: none;
+ 
+}
+
+#newNoteButton {
+    background-color: #ff00f2d0;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    font-size: 25px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    float: right;
+
+}
+
+#boardButton {
+    background-color: #ffffffd0;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    font-size: 25px;
+
+    border: 1px solid black; 
+    border-radius: 3px;
+    cursor: pointer;
+    float: left;
+display: none;
+}

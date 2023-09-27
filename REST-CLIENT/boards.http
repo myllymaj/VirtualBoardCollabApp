@@ -1,23 +1,12 @@
-@apiUrl = http://localhost:3030/boards
+@apiUrl = http://localhost:3030/boards   
 @token = {{$dotenv TOKEN}}
 
 
 
-
-
-
-
-
-
-
-
-
-
 POST {{apiUrl}}
-
 Content-Type: application/json
 
 {
-  "title": "Board Title",
-  "ownerId": "USER_ID"
+  "name": "My New Board",
+  "userId": "dasd" 
 }

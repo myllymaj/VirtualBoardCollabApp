@@ -10,13 +10,15 @@ require('dotenv').config()
 router.get('/', async (req, res) => {
     const users = await prisma.User.findMany()
     console.log("users GET")
-    res.send({ 
-        msg: 'users', 
-        users: users
-    })
-})
+    res.send(users)
+    
+ } )
 
-// restrict for production
+
+
+
+
+
 router.get('/:id', async (req, res) => {
 
     const user = await prisma.User.findUnique({
@@ -83,7 +85,7 @@ router.post('/', async (req, res) => {
         await prisma.$disconnect();
     }
 });
-
+/*
 router.patch('/:id', async (req, res) => {
 
     if (req.params.id != req.authUser.sub) {
@@ -138,6 +140,6 @@ router.delete('/:id', async (req, res) => {
         })
     }
 })
-
+*/
 
 module.exports = router

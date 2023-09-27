@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Login Page</title>
+    <title>LiveCommunication</title>
 </head>
 
 <body>
     <nav>
         <div id="loginFormContainer">
+
             <form id="loginForm">
                 <label for="email"></label>
                 <input type="email" id="email" required placeholder="Enter your Email"><br>
@@ -19,19 +20,30 @@
                 <input type="password" id="password" required placeholder="Enter your Password"><br>
 
                 <button type="submit">Login</button>
+   
             </form>
-            <br>
-            <br><br>
-            <div id="loggedInUser" >
-            
-                
-            </div>
+
+            <div id="loggedInUser"></div>
             <button id="logoutButton">Logout</button>
+            <button id="boardButton">Boards:</button>
+            <div id="loggedInContent">
+               
+    
+                
+
+
+                <button id="newNoteButton">New Note</button>
+            </div>
+
+
         </div>
+
+
     </nav>
 
     <div id="content">
         <div id="tokenDisplay"></div>
+        <!--websockets boards? här-->
     </div>
 
     <script src="script.js"></script>
