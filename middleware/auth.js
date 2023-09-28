@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
         // spara användarinfo i req
         req.authUser = authUser
 
-        console.log(authUser)
+        console.log("info " + req.authUser)
 
         next()
 

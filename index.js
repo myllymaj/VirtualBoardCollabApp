@@ -16,7 +16,7 @@ const usersEndpoint = require('./endpoints/users.js')
 app.use('/users', usersEndpoint)
 
 const boardsEndpoint = require('./endpoints/boards.js')
-app.get('/boards', authorizeToken, boardsEndpoint)
+app.get('/boards.js', boardsEndpoint)
 
 
 

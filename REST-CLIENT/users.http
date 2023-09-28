@@ -23,11 +23,21 @@ POST {{apiUrl}}
 Content-Type: application/json
 
 {
-    "username": "Jake",
-    "email": "jake@jake.com",
-    "password": "jake"
+    "username": "sa",
+    "email": "t@aa.com",
+    "password": "aa",
+    "roles": ["aa", "a"]
 }
+###
 
+
+POST http://localhost:3030/boards   
+Content-Type: application/json
+
+{
+  "board": "xd",
+  "createdBy": "test"
+}
 ### 
 PATCH {{apiUrl}}/64f9a89c3192a9bf9d0e740a
 Authorization: Bearer {{token}}

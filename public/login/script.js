@@ -48,6 +48,7 @@ loginForm.addEventListener('submit', async function (event) {
 
             console.log('JWT token:', data.token);
             console.log('ID:', data.userId);
+            console.log("roller: ", data.roles)
 
             const tokenDisplay = document.getElementById('tokenDisplay');
             // tokenDisplay.textContent = `JWT token: ${data.token}`;
@@ -72,4 +73,31 @@ logoutButton.addEventListener("click", function () {
     logoutButton.style.display = "none";
     localStorage.clear();
     location.reload();
+});
+
+
+document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var selectedOption = document.getElementById('dropdown').value;
+    
+    // Send a GET request with the selected option
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/path_to_your_server_endpoint?selectedOption=' + selectedOption, true);
+    
+    xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 400) {
+            // Success, do something with the response
+            document.getElementById('result').innerHTML = xhr.responseText;
+        } else {
+            // Error handling
+            console.error(xhr.statusText);
+        }
+    };
+    
+    xhr.onerror = function() {
+        console.error('Network error');
+    };
+    
+    xhr.send();
 });

@@ -50,13 +50,15 @@ router.post('/login', async (req, res) => {
             sub: user.id, 
             email: user.email, 
             username: user.username,
+            role:user.roles,
+            boards: user.boards,
             expiresIn: '1d'
         }, process.env.JWT_SECRET)
 
         
        
 
-        res.send({token: token, msg: "Login successful", userId: user.id,username:user.username})
+        res.send({token: token, msg: "Login successful", userId: user.id,username:user.username,roles:user.roles,boards:user.boards})
 
     } catch (error) {
         res.status(500).send({msg: 'ERROR', error: 'Internal server error'})
@@ -72,7 +74,8 @@ router.post('/', async (req, res) => {
             data: {
                 username: req.body.username,
                 email: req.body.email,
-                password: hash
+                password: hash,
+                roles: req.body.roles
             },
         });
 
