@@ -1,10 +1,17 @@
 @apiUrl = http://localhost:3030/users   
 @token = {{$dotenv TOKEN}}
 
+//board IDs - kan skapas mera boards vid behov men dessa för att kunna lägga till olika användare
+//roles onödiga för tillfället eftersom vi lägger boards rakt in till användaren
+@projektplanering = 6515c9715c491adf4f3b2115
+@brainstorming = 6515ca055c491adf4f3b2116
+
+@Marknadsföring = 6515ca115c491adf4f3b2117
+
+@socials = 6515ca195c491adf4f3b2118
 ###
 GET {{apiUrl}}
 Authorization: Bearer {{token}}
-
 ###
 GET {{apiUrl}}/6512c8233a0c3364900557a3
 Authorization: Bearer {{token}}
@@ -23,21 +30,13 @@ POST {{apiUrl}}
 Content-Type: application/json
 
 {
-    "username": "sa",
-    "email": "t@aa.com",
-    "password": "aa",
-    "roles": ["aa", "a"]
+    "username": "Admin",
+    "email": "admin@admin.com",
+    "password": "admin",
+    "roles": ["Dev", "Admin"],
+    "boards": ["{{projektplanering}}", "{{brainstorming}}","{{Marknadsföring}}","{{socials}}"]
 }
-###
 
-
-POST http://localhost:3030/boards   
-Content-Type: application/json
-
-{
-  "board": "xd",
-  "createdBy": "test"
-}
 ### 
 PATCH {{apiUrl}}/64f9a89c3192a9bf9d0e740a
 Authorization: Bearer {{token}}

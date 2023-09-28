@@ -11,8 +11,9 @@ router.get('/', async (req, res) => {
     const users = await prisma.User.findMany()
     console.log("users GET")
     res.send(users)
-    
- } )
+
+})
+
 
 
 
@@ -22,46 +23,46 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
 
     const user = await prisma.User.findUnique({
-        where: {id: req.params.id}
+        where: { id: req.params.id }
     })
 
 
     res.send({ msg: 'users', user: user })
-}) 
+})
 
-    
+
 router.post('/login', async (req, res) => {
     try {
         const user = await prisma.User.findUnique({
-            where: {email: req.body.email}
+            where: { email: req.body.email }
         })
 
         if (user == null) {
-            return res.status(404).send({msg: 'ERROR', error: 'User not found'})
+            return res.status(404).send({ msg: 'ERROR', error: 'User not found' })
         }
 
         const match = await bcrypt.compare(req.body.password, user.password)
 
         if (!match) {
-            return res.status(401).send({msg: 'ERROR', error: 'Wrong password'})
+            return res.status(401).send({ msg: 'ERROR', error: 'Wrong password' })
         }
 
-        const token = await jwt.sign({ 
-            sub: user.id, 
-            email: user.email, 
+        const token = await jwt.sign({
+            sub: user.id,
+            email: user.email,
             username: user.username,
-            role:user.roles,
+            roles: user.roles,
             boards: user.boards,
             expiresIn: '1d'
         }, process.env.JWT_SECRET)
 
-        
-       
 
-        res.send({token: token, msg: "Login successful", userId: user.id,username:user.username,roles:user.roles,boards:user.boards})
+
+
+        res.send({ token: token, msg: "Login successful", userId: user.id, username: user.username, roles: user.roles, boards: user.boards })
 
     } catch (error) {
-        res.status(500).send({msg: 'ERROR', error: 'Internal server error'})
+        res.status(500).send({ msg: 'ERROR', error: 'Internal server error' })
     }
 
 })
@@ -70,12 +71,13 @@ router.post('/', async (req, res) => {
     try {
         const hash = await bcrypt.hash(req.body.password, 12);
 
-        const user = await prisma.user.create({
+        const user = await prisma.User.create({
             data: {
                 username: req.body.username,
                 email: req.body.email,
                 password: hash,
-                roles: req.body.roles
+                roles: req.body.roles,
+                boards: req.body.boards
             },
         });
 

@@ -1,39 +1,49 @@
 const express = require('express')
 const router = express.Router()
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 require('dotenv').config()
 
 
+router.get('/', async (req, res) => {
+    const boards = await prisma.Board.findMany()
+    console.log("boards GET")
+    res.send(boards)
 
-
+})
 
 
 
 router.post('/', async (req, res) => {
     try {
 
-
         const newBoard = await prisma.Board.create({
             data: {
                 board: req.body.board,
-                createdBy: req.body.createdBy
+                userId: req.authUser.sub
             }
         });
-    
+        /*
+        //ändra på responsen vid behov?
+        const dataMessage = {
 
-        console.log("User created:", newBoard);
-        res.status(201).send({ msg: 'Board created', newBoard });
+            id: newBoard.id,
+            board: newBoard.board,
+            userId: newBoard.userId
+        };
+        */
+        res.status(201).send(newBoard)
+
+
+
+
     } catch (error) {
-        console.error('Error creating user:', error);
+
         res.status(500).send({ msg: 'ERROR', error: 'Internal server error' });
-    } finally {
-        await prisma.$disconnect();
     }
 });
 
 
 
-    module.exports = router;
+module.exports = router

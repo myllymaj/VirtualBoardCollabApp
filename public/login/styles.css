@@ -92,3 +92,43 @@ nav {
     float: left;
 display: none;
 }
+#myForm {
+
+display: none;
+}
+
+
+
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #ffffff;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    width: auto; /* Adjust the width as needed */
+}
+
+
+#dropdown {
+    width: 300%;
+
+
+    background-color: transparent;
+    padding: 10px;
+    font-size: 25px;
+
+    border: 1px solid black; 
+    border-radius: 3px;
+    cursor: pointer;
+    float: left;
+}
+
+
+#dropdown option {
+    background-color: #fff;
+    padding: 5px;
+    font-size:  25px;
+}
+
+
