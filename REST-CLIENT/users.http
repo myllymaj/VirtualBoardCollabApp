@@ -6,7 +6,7 @@
 @projektplanering = 6515c9715c491adf4f3b2115
 @brainstorming = 6515ca055c491adf4f3b2116
 
-@Marknadsföring = 6515ca115c491adf4f3b2117
+@Allmänt = 6515ca235c491adf4f3b2119
 
 @socials = 6515ca195c491adf4f3b2118
 ###
@@ -30,11 +30,11 @@ POST {{apiUrl}}
 Content-Type: application/json
 
 {
-    "username": "Admin",
-    "email": "admin@admin.com",
-    "password": "admin",
-    "roles": ["Dev", "Admin"],
-    "boards": ["{{projektplanering}}", "{{brainstorming}}","{{Marknadsföring}}","{{socials}}"]
+    "username": "banana",
+    "email": "banana@banana.com",
+    "password": "banana",
+    "roles": ["banana", "fruit"],
+    "boards": ["{{projektplanering}}", "{{brainstorming}}","{{Allmänt}}","{{socials}}"]
 }
 
 ### 

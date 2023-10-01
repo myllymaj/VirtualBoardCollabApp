@@ -6,13 +6,26 @@ const prisma = new PrismaClient()
 require('dotenv').config()
 
 
-router.get('/', async (req, res) => {
-    const boards = await prisma.Board.findMany()
-    console.log("boards GET")
-    res.send(boards)
+router.get('/:id', async (req, res) => {
+    try {
+        const boardId = req.params.id;
 
-})
+        const board = await prisma.Board.findUnique({
+            where: { id: boardId },
+            select: { board: true } 
+        });
 
+        if (!board) {
+            return res.status(404).send({ msg: 'Board not found' });
+        }
+
+        // Return the name of the board
+        res.status(200).send({ boardName: board.board });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ msg: 'Internal server error' });
+    }
+});
 
 
 router.post('/', async (req, res) => {
