@@ -1,13 +1,42 @@
-
-
-
-//login
 const loginForm = document.getElementById("loginForm");
 const loggedInUser = document.getElementById("loggedInUser");
 const loggedInContent = document.getElementById("loggedInContent");
 const logoutButton = document.getElementById("logoutButton");
 const boardButton = document.getElementById("boardButton");
 const myForm = document.getElementById("myForm");
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const jwtToken = localStorage.getItem("jwtToken");
+
+  if (jwtToken) {
+    loginForm.style.display = "none";
+    loggedInUser.style.display = "flex";
+    loggedInContent.style.display = "flex";
+    logoutButton.style.display = "flex";
+    boardButton.style.display = "flex";
+    myForm.style.display = "flex";
+    const usernameDisplay = document.getElementById('loggedInUser');
+    const usernamer = localStorage.getItem('username')
+    //console.log(usernamer)
+    usernameDisplay.innerHTML = `Välkommen &nbsp;<span style="text-transform:uppercase;">${usernamer}</span>`;
+
+
+
+
+    // tokenDisplay.textContent = `JWT token: ${data.token}
+    //console.log("Cookie sparad "+localStorage.getItem("jwtToken"));
+
+    populateDropdown();
+  }
+
+  // Add your event listeners and other JavaScript functionality here
+});
+
+
+
+//login
+
 loginForm.addEventListener('submit', async function (event) {
   event.preventDefault();
 
@@ -45,7 +74,7 @@ loginForm.addEventListener('submit', async function (event) {
       }
 
 
-      console.log(data.username)
+      //console.log(data.username)
       const usernameDisplay = document.getElementById('loggedInUser');
       usernameDisplay.innerHTML = `Välkommen &nbsp;<span style="text-transform:uppercase;">${data.username}</span>`;
       const tokenDisplay = document.getElementById('tokenDisplay');
@@ -54,7 +83,7 @@ loginForm.addEventListener('submit', async function (event) {
       //  console.log('ID:', data.userId);
       //console.log("Roles: ", data.roles)
       //  console.log("Boards: ", data.boards)
-
+      localStorage.setItem('username', data.username);
       localStorage.setItem('boards', JSON.stringify(data.boards));
 
 
@@ -96,7 +125,7 @@ async function populateDropdown() {
   const userBoards = JSON.parse(localStorage.getItem('boards'))
 
 
-  console.log('userBoards:', userBoards);
+ // console.log('userBoards:', userBoards);
 
   try {
 
@@ -128,3 +157,55 @@ async function populateDropdown() {
 
 
 
+
+
+////////////////////////////////////
+////////////WebSockets/////////////
+///////////////////////////////////
+
+
+if (!localStorage.getItem('pastebin_token')) {
+  localStorage.setItem('pastebin_token', prompt('Enter token'));
+}
+
+WS_TOKEN = localStorage.getItem('pastebin_token') || 'my-secret-token';
+
+// wss = SSL-krypterad
+WS_URL = `ws://localhost:3030?token=${WS_TOKEN}` 
+// WS_URL = ``ws://localhost:5000?token=${WS_TOKEN}`
+
+console.log(WS_URL)
+
+// Create a WebSocket connection
+const socket = new WebSocket(WS_URL);
+
+// Connection established 
+socket.onopen = function (event) {
+  console.log('Connected to WebSocket server');
+};
+
+// Message listener
+socket.onmessage = function (event) {
+  console.log('Received message:', event.data);
+  const data = JSON.parse(event.data);
+
+  if (data.type == 'paste') {
+      document.querySelector('#out').innerText = data.text;
+      document.querySelector('#err').innerText = '';
+  } else if (data.type == 'error') {
+      document.querySelector('#err').innerText = data.msg;
+  }
+  
+};
+
+// Connection closed 
+socket.onclose = function (event) {
+  console.log('Connection closed');
+};
+
+document.querySelector('#in').addEventListener('input', (evt) => {
+  socket.send(JSON.stringify({
+      type: 'paste',
+      text: evt.target.value
+  }));
+});

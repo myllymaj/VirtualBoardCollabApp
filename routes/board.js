@@ -8,10 +8,10 @@ require('dotenv').config()
 
 router.get('/:id', async (req, res) => {
     try {
-        const boardId = req.params.id;
+
 
         const board = await prisma.Board.findUnique({
-            where: { id: boardId },
+            where: { id: req.params.id },
             select: { board: true } 
         });
 
@@ -19,7 +19,7 @@ router.get('/:id', async (req, res) => {
             return res.status(404).send({ msg: 'Board not found' });
         }
 
-        // Return the name of the board
+   
         res.status(200).send({ boardName: board.board });
     } catch (error) {
         console.error(error);
