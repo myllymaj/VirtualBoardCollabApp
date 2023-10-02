@@ -17,6 +17,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTE1Y2JkN
 Content-Type: application/json
 
 {
-  "board": "RestingTesting"
+  "board": "Server Rules"
 }
 

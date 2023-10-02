@@ -20,28 +20,57 @@
                 <input type="password" id="password" required placeholder="Enter your Password"><br>
 
                 <button class="btn first" type="submit">Login</button>
-   
+
+
             </form>
+            <button class="btn fourth" id="registerButton">Register</button>
+            <div class="modal" id="myModal">
+                <div class="modal-content">
+                    <span class="close" id="closeModal">&times;</span>
+                    <form id="registrationForm">
+                        <label for="username">Username:</label>
+                        <input type="text" id="usernameInput" name="username" required><br>
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="emailInput" name="email" required><br>
+
+                        <label for="password">Password:</label>
+                        <input type="password" id="passwordInput" name="password" required><br>
+
+                        <button type="submit">Register</button>
+                    </form>
+
+                </div>
+            </div>
+            <div id="thankYouModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="closeThankYouModal">&times;</span>
+                    <h2>Thank you for registering!</h2>
+                    <p>Your registration was successful.</p>
+                </div>
+            </div>
 
             <div id="loggedInUser"></div>
             <button class="btn second" id="logoutButton">Logout</button>
-            <button id="boardButton">Boards: </button>
+            <button id="boardButton">Boards:</button>
             <form id="myForm">
+
                 <div class="custom-dropdown">
-                <select id="dropdown">
-                    <option value="option1"></option>
-   
-                </select>
-            </div>
+
+                    <select id="dropdown">
+                        <option value="option1"></option>
+
+                    </select>
+                </div>
                 <!--<input type="submit" value="Submit">-->
             </form>
             <div id="result"></div>
-            
-            <div id="loggedInContent">
-               
-    
 
-                
+            <div id="loggedInContent">
+
+
+
+
 
 
                 <button class="btn third" id="newNoteButton">New Note</button>
@@ -54,18 +83,18 @@
     </nav>
 
 
-    
+
 
     <div id="content">
         <div id="tokenDisplay"></div>
-     
+
 
         <!-- websockets here/notes-->
         <!-- websockets here/notes-->
-                <!-- websockets here/notes-->
-                        <!-- websockets here/notes-->
-                        
-    
+        <!-- websockets here/notes-->
+        <!-- websockets here/notes-->
+
+
 
 
     </div>
