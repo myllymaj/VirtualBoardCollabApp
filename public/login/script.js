@@ -8,6 +8,7 @@ const registerButton = document.getElementById("registerButton");
 const modal = document.getElementById("myModal");
 const btn = document.getElementById("closeModal");
 const registrationForm = document.getElementById("registrationForm");
+const content = document.getElementById("content");
 //chatgpt modification
 //chatgpt modification
 //chatgpt modification
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     logoutButton.style.display = "flex";
     boardButton.style.display = "flex";
     myForm.style.display = "flex";
+    content.style.display = "flex";
     const usernameDisplay = document.getElementById('loggedInUser');
     const usernamer = localStorage.getItem('username')
     //console.log(usernamer)
@@ -80,6 +82,7 @@ loginForm.addEventListener('submit', async function (event) {
         logoutButton.style.display = "flex";
         boardButton.style.display = "flex";
         myForm.style.display = "flex";
+        content.style.display = "flex";
       }
 
 
@@ -119,7 +122,11 @@ logoutButton.addEventListener("click", function () {
   loggedInContent.style.display = "none";
   logoutButton.style.display = "none";
   myForm.style.display = "none";
-  localStorage.clear();
+  content.style.display = "none";
+  //localStorage.clear();
+  localStorage.removeItem("jwtToken")
+  localStorage.removeItem("username")
+  localStorage.removeItem("boards")
   location.reload();
 });
 
@@ -252,6 +259,9 @@ registrationForm.addEventListener("submit", function (event) {
     thankYouModal.style.display = "none";
   }
 });
+
+
+
 
 
 ////////////////////////////////////

@@ -414,3 +414,24 @@ button[type="submit"]:hover {
 #closeThankYouModal:hover {
     color: #000;
 }
+#content{
+    display: none;
+    font-size: 25px;
+ 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+}
+#in {
+    
+    text-align: center;
+    width: auto;
+    margin: 0 auto;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 25px;
+}
