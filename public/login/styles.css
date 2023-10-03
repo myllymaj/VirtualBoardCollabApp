@@ -438,3 +438,39 @@ button[type="submit"]:hover {
 #option{
     color: black;
 }
+.sticky-note {
+    position: absolute;
+    width: 200px;
+    height: 150px;
+background-color: lightgreen;
+    padding: 10px;
+    border: 1px solid #000;
+    cursor: grab;
+}
+
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.sticky-note textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    background: transparent;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    outline: none;
+}
+.color-button {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+}

@@ -111,7 +111,7 @@ loginForm.addEventListener('submit', async function (event) {
     console.error('Error:', error);
   }
 
-    createWebSocketConnection();
+  createWebSocketConnection();
 
 });
 logoutButton.addEventListener("click", function () {
@@ -175,17 +175,17 @@ async function populateDropdown() {
 
     }
     const initiallySelectedValue = dropdown.value;
-    localStorage.setItem("currentBoardId",dropdown.value)
-   // console.log('Initially selected value:', initiallySelectedValue);
+    localStorage.setItem("currentBoardId", dropdown.value)
+    // console.log('Initially selected value:', initiallySelectedValue);
   } catch (error) {
     console.error('Error:', error);
   }
 }
 
 
-dropdown.addEventListener('change', function() {
+dropdown.addEventListener('change', function () {
   const selectedValue = dropdown.value;
-  localStorage.setItem("currentBoardId",selectedValue)
+  localStorage.setItem("currentBoardId", selectedValue)
   window.createWebSocketConnection();
   console.log('Selected value:', selectedValue);
 });
