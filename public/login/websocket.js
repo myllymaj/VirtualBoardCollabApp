@@ -1,56 +1,103 @@
 
+//chatgpt
+//chatgpt
+//chatgpt
 
 let socket;
-// Define a function to create or update the WebSocket connection
 
-//kan kalla på createWebsocket från en annat script, i detta fall i script.js nör jag väljer dropdown option
+function displayNotesForCurrentBoard(boardId) {
+    const allNotes = document.querySelectorAll(".sticky-note");
+    
+    allNotes.forEach((note) => {
+        const noteBoardId = note.getAttribute("data-board-id");
+
+        if (noteBoardId === boardId) {
+           
+            note.style.display = "block";
+        } else {
+         
+            note.style.display = "none";
+        }
+    });
+}
+
 window.createWebSocketConnection = function () {
     const boardId = localStorage.getItem('currentBoardId');
     const WS_TOKEN = localStorage.getItem('access_token');
 
-    // Construct the WebSocket URL with the new boardId
+
     const WS_URL = `ws://localhost:5000?token=${WS_TOKEN}&board_id=${boardId}`;
     //console.log(WS_URL);
 
-    // Close the existing WebSocket connection (if it exists)
+
     if (socket && socket.readyState === WebSocket.OPEN) {
         socket.close();
     }
 
-    // Create a new WebSocket connection
+
     socket = new WebSocket(WS_URL);
 
-    // Connection established 
+
     socket.onopen = function (event) {
         console.log('Connected to WebSocket server');
     };
 
-    // Message listener
+
     socket.onmessage = function (event) {
         console.log('Received message:', event.data);
         const data = JSON.parse(event.data);
-    
-        if (data.type === 'createStickyNote') {
-            // Create a new sticky note with the received data
-            const note = document.createElement("div");
-            note.classList.add("sticky-note");
-            note.style.left = data.left;
-            note.style.top = data.top;
-            note.style.backgroundColor = data.backgroundColor;
-    
-            const deleteButton = document.createElement("span");
-            deleteButton.classList.add("delete-button");
-            deleteButton.innerHTML = "x";
-    
-            const textarea = document.createElement("textarea");
-            textarea.value = data.text;
-    
-            note.appendChild(deleteButton);
-            note.appendChild(textarea);
-            app.appendChild(note);
+
+        if (data.type === 'paste') {
+            const textareaId = data.id;
+            const text = data.text;
+            const boardId = data.boardId;
+
+  
+            const existingNote = document.getElementById(textareaId);
+
+            if (existingNote) {
+         
+                existingNote.style.left = data.left;
+                existingNote.style.top = data.top;
+                existingNote.style.backgroundColor = data.backgroundColor;
+                existingNote.value = text; 
+            } else {
+              
+                const note = document.createElement("div");
+                note.classList.add("sticky-note");
+                note.style.left = data.left;
+                note.style.top = data.top;
+                note.style.backgroundColor = data.backgroundColor;
+
+                const deleteButton = document.createElement("span");
+                deleteButton.classList.add("delete-button");
+                deleteButton.innerHTML = "x";
+
+                const colors = ["lightgreen", "lightblue", "pink"];
+                for (const color of colors) {
+                    const colorButton = document.createElement("span");
+                    colorButton.classList.add("color-button");
+                    colorButton.style.backgroundColor = color;
+                    colorButton.addEventListener("click", () => {
+                        note.style.backgroundColor = color;
+                    });
+                    note.appendChild(colorButton);
+                }
+             
+                const textarea = document.createElement("textarea");
+                textarea.placeholder = "Type your note here...";
+                textarea.value = text; 
+                textarea.id = textareaId;
+
+                note.appendChild(deleteButton);
+                note.appendChild(textarea);
+                app.appendChild(note);
+               
+            }
+          
         }
     };
-    // Connection closed 
+
     socket.onclose = function (event) {
         console.log('Connection closed');
     };
@@ -66,20 +113,30 @@ window.createWebSocketConnection = function () {
 
 const newNoteButton = document.getElementById("newNoteButton");
 newNoteButton.addEventListener("click", createStickyNote);
-let noteCounter = 0;
+
+window.addEventListener('storage', (e) => {
+    if (e.key === 'noteCounter') {
+
+        const updatedValue = e.newValue;
+        localStorage.setItem('noteCounter', updatedValue);
+
+        noteCounter = updatedValue;
+    }
+});
+let noteCounter = localStorage.getItem('noteCounter') || 0;
+
 function createStickyNote() {
+    const boardId = localStorage.getItem('currentBoardId');
     const note = document.createElement("div");
     note.classList.add("sticky-note");
-    note.style.left = "200px";
-    note.style.top = "200px";
 
+
+    const initialLeft = "50px";
+    const initialTop = "50px";
     const deleteButton = document.createElement("span");
     deleteButton.classList.add("delete-button");
     deleteButton.innerHTML = "x";
-    deleteButton.addEventListener("click", () => {
-        // Handle delete button click here (e.g., remove the note)
-        app.removeChild(note);
-    });
+
 
     const colors = ["lightgreen", "lightblue", "pink"];
     for (const color of colors) {
@@ -100,20 +157,23 @@ function createStickyNote() {
     note.appendChild(deleteButton);
     note.appendChild(textarea);
     app.appendChild(note);
+    note.setAttribute("data-board-id", boardId);
+    const currentBoardId = localStorage.getItem('currentBoardId');
+displayNotesForCurrentBoard(currentBoardId);
 
-    // Now that the note is fully configured, send a WebSocket message to inform the server about the new sticky note
     socket.send(JSON.stringify({
-        type: 'createStickyNote',
-        left: note.style.left,
-        top: note.style.top,
+        type: 'paste',
+        left: initialLeft,
+        top: initialTop,
         backgroundColor: note.style.backgroundColor,
         text: textarea.value,
-        id: textareaId
+        id: textareaId,
+        boardId: boardId,
     }));
     noteCounter++;
+    localStorage.setItem('noteCounter', noteCounter);
 }
 
 
 
-// Initial WebSocket connection creation
 window.createWebSocketConnection();
