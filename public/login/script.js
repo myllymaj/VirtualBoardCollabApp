@@ -91,6 +91,7 @@ loginForm.addEventListener('submit', async function (event) {
       usernameDisplay.innerHTML = `Välkommen &nbsp;<span style="text-transform:uppercase;">${data.username}</span>`;
       const tokenDisplay = document.getElementById('tokenDisplay');
       localStorage.setItem("jwtToken", data.token);
+      localStorage.setItem("access_token", data.token);
       // console.log('JWT token:', data.token);
       //  console.log('ID:', data.userId);
       //console.log("Roles: ", data.roles)
@@ -110,7 +111,7 @@ loginForm.addEventListener('submit', async function (event) {
     console.error('Error:', error);
   }
 
-
+    createWebSocketConnection();
 
 });
 logoutButton.addEventListener("click", function () {
@@ -127,6 +128,7 @@ logoutButton.addEventListener("click", function () {
   localStorage.removeItem("jwtToken")
   localStorage.removeItem("username")
   localStorage.removeItem("boards")
+  localStorage.removeItem("access_token");
   location.reload();
 });
 
@@ -165,14 +167,28 @@ async function populateDropdown() {
       const board = await response.json();
 
       const option = document.createElement('option');
-      option.value = board.boardName;
+      option.value = board.id;
       option.textContent = board.boardName;
+
       dropdown.appendChild(option);
+
+
     }
+    const initiallySelectedValue = dropdown.value;
+    localStorage.setItem("currentBoardId",dropdown.value)
+   // console.log('Initially selected value:', initiallySelectedValue);
   } catch (error) {
     console.error('Error:', error);
   }
 }
+
+
+dropdown.addEventListener('change', function() {
+  const selectedValue = dropdown.value;
+  localStorage.setItem("currentBoardId",selectedValue)
+  window.createWebSocketConnection();
+  console.log('Selected value:', selectedValue);
+});
 
 registerButton.onclick = function () {
   modal.style.display = "block";

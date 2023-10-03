@@ -12,6 +12,7 @@ model Board {
   userId String @db.ObjectId
   createdAt DateTime    @default(now()) @map("created_at")
   updatedAt DateTime    @default(now()) @map("updated_at")
+  notes Json? // id av Note läggs till här
   
 }
 
@@ -27,4 +28,14 @@ model User {
 
 
   
+}
+model Note {
+  id String      @id @default(auto()) @map("_id") @db.ObjectId
+  content  String?
+  color    String?
+  x        Float?   
+  y        Float?   
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
 }

@@ -435,3 +435,6 @@ button[type="submit"]:hover {
     border-radius: 4px;
     font-size: 25px;
 }
+#option{
+    color: black;
+}

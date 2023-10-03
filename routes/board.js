@@ -12,7 +12,7 @@ router.get('/:id', async (req, res) => {
 
         const board = await prisma.Board.findUnique({
             where: { id: req.params.id },
-            select: { board: true } 
+            select: { board: true } ,
         });
 
         if (!board) {
@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
         }
 
    
-        res.status(200).send({ boardName: board.board });
+        res.status(200).send({ boardName: board.board, id: req.params.id });
     } catch (error) {
         console.error(error);
         res.status(500).send({ msg: 'Internal server error' });
