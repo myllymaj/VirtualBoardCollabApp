@@ -101,7 +101,7 @@ loginForm.addEventListener('submit', async function (event) {
 
 
       // tokenDisplay.textContent = `JWT token: ${data.token}
-      //console.log("Cookie sparad "+localStorage.getItem("jwtToken"));
+      console.log("Cookie sparad "+localStorage.getItem("jwtToken"));
 
       populateDropdown();
     } else {

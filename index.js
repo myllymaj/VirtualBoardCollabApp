@@ -19,6 +19,9 @@ app.use('/users', usersEndpoint)
 const boardsEndpoint = require('./routes/board.js')
 app.use('/board',authorizeToken, boardsEndpoint)
 
+const notesEndpoint = require('./routes/notes.js')
+app.use('/notes',authorizeToken, notesEndpoint)
+
 
 
 

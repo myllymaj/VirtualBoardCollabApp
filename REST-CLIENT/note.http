@@ -1,0 +1,39 @@
+@apiUrl = http://localhost:3030/notes
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTE1Y2JkNTAyMzdkMjA1ODI5MWEzYjMiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlcyI6WyJEZXYiLCJBZG1pbiJdLCJib2FyZHMiOlsiNjUxNWM5NzE1YzQ5MWFkZjRmM2IyMTE1IiwiNjUxNWNhMDU1YzQ5MWFkZjRmM2IyMTE2IiwiNjUxNWNhMjM1YzQ5MWFkZjRmM2IyMTE5IiwiNjUxNWNhMTk1YzQ5MWFkZjRmM2IyMTE4Il0sImV4cGlyZXNJbiI6IjFkIiwiaWF0IjoxNjk2NDIwODcyfQ.sfrEX2IfxFHK6zuNpog7PywTctww-USep7XpLArCMJ8
+
+
+###
+GET http://localhost:3030/notes/?boardId=6515c9715c491adf4f3b2115
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTE1Y2JkNTAyMzdkMjA1ODI5MWEzYjMiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlcyI6WyJEZXYiLCJBZG1pbiJdLCJib2FyZHMiOlsiNjUxNWM5NzE1YzQ5MWFkZjRmM2IyMTE1IiwiNjUxNWNhMDU1YzQ5MWFkZjRmM2IyMTE2IiwiNjUxNWNhMjM1YzQ5MWFkZjRmM2IyMTE5IiwiNjUxNWNhMTk1YzQ5MWFkZjRmM2IyMTE4Il0sImV4cGlyZXNJbiI6IjFkIiwiaWF0IjoxNjk2NDIwODcyfQ.sfrEX2IfxFHK6zuNpog7PywTctww-USep7XpLArCMJ8
+###
+POST {{apiUrl}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTE1Y2JkNTAyMzdkMjA1ODI5MWEzYjMiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlcyI6WyJEZXYiLCJBZG1pbiJdLCJib2FyZHMiOlsiNjUxNWM5NzE1YzQ5MWFkZjRmM2IyMTE1IiwiNjUxNWNhMDU1YzQ5MWFkZjRmM2IyMTE2IiwiNjUxNWNhMjM1YzQ5MWFkZjRmM2IyMTE5IiwiNjUxNWNhMTk1YzQ5MWFkZjRmM2IyMTE4Il0sImV4cGlyZXNJbiI6IjFkIiwiaWF0IjoxNjk2NDIwODcyfQ.sfrEX2IfxFHK6zuNpog7PywTctww-USep7XpLArCMJ8
+Content-Type: application/json
+
+{
+  "content": "x note content",
+    "color": "Notxe color",
+    "x": 1100,
+    "y": 1540,
+    "boardId": "6515c9715c491adf4f3b2115"
+}
+
+
+###
+PATCH {{apiUrl}}/651d684cfba44652458e67fb
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTE1Y2JkNTAyMzdkMjA1ODI5MWEzYjMiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlcyI6WyJEZXYiLCJBZG1pbiJdLCJib2FyZHMiOlsiNjUxNWM5NzE1YzQ5MWFkZjRmM2IyMTE1IiwiNjUxNWNhMDU1YzQ5MWFkZjRmM2IyMTE2IiwiNjUxNWNhMjM1YzQ5MWFkZjRmM2IyMTE5IiwiNjUxNWNhMTk1YzQ5MWFkZjRmM2IyMTE4Il0sImV4cGlyZXNJbiI6IjFkIiwiaWF0IjoxNjk2NDIwODcyfQ.sfrEX2IfxFHK6zuNpog7PywTctww-USep7XpLArCMJ8
+Content-Type: application/json
+
+{
+     "content": "x",
+    "color": "green",
+    "x": 1100,
+    "y": 1540,
+    "boardId": "6515c9715c491adf4f3b2115"
+}
+
+###
+DELETE {{apiUrl}}/651d684cfba44652458e67fb
+Authorization: Bearer {{token}}
+
+###

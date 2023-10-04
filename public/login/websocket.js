@@ -1,21 +1,15 @@
 
-//chatgpt
-//chatgpt
-//chatgpt
-
 let socket;
-
 function displayNotesForCurrentBoard(boardId) {
     const allNotes = document.querySelectorAll(".sticky-note");
-    
+
     allNotes.forEach((note) => {
         const noteBoardId = note.getAttribute("data-board-id");
 
         if (noteBoardId === boardId) {
-           
             note.style.display = "block";
+            
         } else {
-         
             note.style.display = "none";
         }
     });
@@ -29,6 +23,15 @@ window.createWebSocketConnection = function () {
     const WS_URL = `ws://localhost:5000?token=${WS_TOKEN}&board_id=${boardId}`;
     //console.log(WS_URL);
 
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'currentBoardId') {
+            // Get the updated boardId value
+            const updatedBoardId = e.newValue;
+    
+            // Call the function to display notes for the updated boardId
+            displayNotesForCurrentBoard(updatedBoardId);
+        }
+    });
 
     if (socket && socket.readyState === WebSocket.OPEN) {
         socket.close();
@@ -175,5 +178,5 @@ displayNotesForCurrentBoard(currentBoardId);
 }
 
 
+    window.createWebSocketConnection();
 
-window.createWebSocketConnection();

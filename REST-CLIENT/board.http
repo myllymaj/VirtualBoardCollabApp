@@ -8,7 +8,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTE1ZDVlZ
 ###
 
 
-GET {{apiUrl}}/6515ca195c491adf4f3b2118
+GET {{apiUrl}}/6515c9715c491adf4f3b2115
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTE1ZDVlZWQ0OTMxM2Y3ZjgwMmU4MzYiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VybmFtZSI6InRlc3QiLCJyb2xlcyI6WyJ0ZXN0IiwidGVzdCJdLCJib2FyZHMiOlsiNjUxNWM5NzE1YzQ5MWFkZjRmM2IyMTE1Il0sImV4cGlyZXNJbiI6IjFkIiwiaWF0IjoxNjk2MTYyOTM5fQ.N2fFhACLDxdpznwqgtUNFeHQ4pwlWU12efNuCHOeUTs
 ###
 //kom ihåg att ta en ny jwt token från en inloggad user innan du skapar en board?!
