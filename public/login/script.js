@@ -40,10 +40,21 @@ document.addEventListener("DOMContentLoaded", function () {
     populateDropdown();
   }
 
-  // Add your event listeners and other JavaScript functionality here
+
 });
 
-
+function clearContainers() {
+  var notesContainer = document.getElementById('notesContainer'); 
+  var app = document.getElementById('app');
+  
+  if (notesContainer) {
+    notesContainer.innerHTML = "";
+  }
+  
+  if (app) {
+    app.innerHTML = "";
+  }
+}
 
 //login
 
@@ -186,7 +197,10 @@ async function populateDropdown() {
 dropdown.addEventListener('change', function () {
   const selectedValue = dropdown.value;
   localStorage.setItem("currentBoardId", selectedValue)
+  clearContainers();
   window.createWebSocketConnection();
+  
+  window.getNotesByBoardId(selectedValue);
   console.log('Selected value:', selectedValue);
 });
 

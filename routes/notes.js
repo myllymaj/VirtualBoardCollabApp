@@ -49,7 +49,7 @@ router.get('/', async (req, res) => {
     }
 
     const notes = await prisma.note.findMany({
-      where: {
+      where: { boardId: boardId,
       },
     });
 
