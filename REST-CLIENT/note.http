@@ -20,7 +20,7 @@ Content-Type: application/json
 
 
 ###
-PATCH {{apiUrl}}/651d684cfba44652458e67fb
+PATCH {{apiUrl}}/651ee442119eab8948a674ae
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTE1Y2JkNTAyMzdkMjA1ODI5MWEzYjMiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlcyI6WyJEZXYiLCJBZG1pbiJdLCJib2FyZHMiOlsiNjUxNWM5NzE1YzQ5MWFkZjRmM2IyMTE1IiwiNjUxNWNhMDU1YzQ5MWFkZjRmM2IyMTE2IiwiNjUxNWNhMjM1YzQ5MWFkZjRmM2IyMTE5IiwiNjUxNWNhMTk1YzQ5MWFkZjRmM2IyMTE4Il0sImV4cGlyZXNJbiI6IjFkIiwiaWF0IjoxNjk2NDIwODcyfQ.sfrEX2IfxFHK6zuNpog7PywTctww-USep7XpLArCMJ8
 Content-Type: application/json
 
@@ -33,7 +33,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{apiUrl}}/651e9f2cd8b16bbde708b470
+DELETE {{apiUrl}}/651ee442119eab8948a674ae
 Authorization: Bearer {{token}}
 
 ###
