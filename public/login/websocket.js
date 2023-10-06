@@ -436,37 +436,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 deleteButton.classList.add("delete-button");
                 deleteButton.innerHTML = "x";
 
-                deleteButton.addEventListener("click", async () => {
+                deleteButton.addEventListener("click", async (e) => {
                     try {
-
-                        const deleteResponse = await fetch(`https://virtualboardcollabapp.azurewebsites.net/${noteId}`, {
+                        const checkToken = localStorage.getItem("jwtToken")
+                        const deleteResponse = await fetch(`https://virtualboardcollabapp.azurewebsites.net/notes/${noteId}`, {
                             method: 'DELETE',
                             headers: {
                                 Authorization: 'Bearer ' + checkToken,
                                 'Content-Type': 'application/json',
                             },
                         });
-
+        
                         if (deleteResponse.ok) {
-
-                            noteC.removeChild(noteElement);
-
+        
+                            if (e.target.classList.contains("delete-button")) {
+                                e.target.parentElement.remove();
+                            }
+        
                             socket.send(JSON.stringify({
                                 type: 'deleteNote',
-                                id: noteId,
+                                id: saveId,
                                 boardId: boardId,
                             }));
                         } else {
-
+        
                             throw new Error('Failed to delete note');
-
-
+        
+        
                         }
                     } catch (error) {
                         console.error('Error deleting note:', error);
                     }
                 });
-
+            
 
 
 
