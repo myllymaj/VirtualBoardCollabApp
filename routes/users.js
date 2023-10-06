@@ -6,7 +6,7 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 require('dotenv').config()
 
-// disable for production?
+
 router.get('/', async (req, res) => {
     const users = await prisma.User.findMany()
     console.log("users GET")

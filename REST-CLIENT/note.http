@@ -33,7 +33,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{apiUrl}}/651ee442119eab8948a674ae
+DELETE {{apiUrl}}/651ffb9192598f71c82ab6a5
 Authorization: Bearer {{token}}
 
 ###

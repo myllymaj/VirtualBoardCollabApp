@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const jwtToken = localStorage.getItem("jwtToken");
 
   if (jwtToken) {
+    const boardId = localStorage.getItem('currentBoardId');
+
+
     loginForm.style.display = "none";
     registerButton.style.display = "none";
     loggedInUser.style.display = "flex";
@@ -44,13 +47,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function clearContainers() {
-  var notesContainer = document.getElementById('notesContainer'); 
+  var notesContainer = document.getElementById('notesContainer');
   var app = document.getElementById('app');
-  
+
   if (notesContainer) {
     notesContainer.innerHTML = "";
   }
-  
+
   if (app) {
     app.innerHTML = "";
   }
@@ -67,7 +70,7 @@ loginForm.addEventListener('submit', async function (event) {
 
 
 
-  const apiUrl = 'http://localhost:3030/users/login';
+  const apiUrl = 'https://virtualboardcollabapp.azurewebsites.net/users/login';
 
   try {
 
@@ -82,9 +85,12 @@ loginForm.addEventListener('submit', async function (event) {
     const data = await response.json();
 
     if (response.ok) {
+      const boardId = localStorage.getItem('currentBoardId');
+      window.getNotesByBoardId(boardId);
 
       const isLoginSuccessful = true;
       if (isLoginSuccessful) {
+
         loginForm.style.display = "none";
         registerButton.style.display = "none";
         loggedInUser.textContent = "You are logged in!";
@@ -112,7 +118,7 @@ loginForm.addEventListener('submit', async function (event) {
 
 
       // tokenDisplay.textContent = `JWT token: ${data.token}
-      console.log("Cookie sparad "+localStorage.getItem("jwtToken"));
+      console.log("Cookie sparad " + localStorage.getItem("jwtToken"));
 
       populateDropdown();
     } else {
@@ -164,7 +170,7 @@ async function populateDropdown() {
     dropdown.innerHTML = '';
     for (const id of userBoards) {
 
-      const response = await fetch(`http://localhost:3030/board/${id}`, {
+      const response = await fetch(`https://virtualboardcollabapp.azurewebsites.net/board/${id}`, {
         method: 'GET',
         headers: {
           Authorization: 'Bearer ' + checkToken,
@@ -199,9 +205,9 @@ dropdown.addEventListener('change', function () {
   localStorage.setItem("currentBoardId", selectedValue)
   clearContainers();
   window.createWebSocketConnection();
-  
+
   window.getNotesByBoardId(selectedValue);
-  console.log('Selected value:', selectedValue);
+  //console.log('Selected value:', selectedValue);
 });
 
 registerButton.onclick = function () {
@@ -250,7 +256,7 @@ registrationForm.addEventListener("submit", function (event) {
   };
 
 
-  fetch('http://localhost:3030/users', {
+  fetch('https://virtualboardcollabapp.azurewebsites.net/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -291,10 +297,4 @@ registrationForm.addEventListener("submit", function (event) {
 });
 
 
-
-
-
-////////////////////////////////////
-////////////WebSockets/////////////
-///////////////////////////////////
 

@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
   try {
     const { content, color, x, y, boardId } = req.body;
 
-    // Check if the board with the specified boardId exists
+
     const board = await prisma.board.findUnique({
       where: {
         id: boardId,
@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-//get all notes that have same boardId
+
 router.get('/', async (req, res) => {
   try {
     const boardId = req.query.boardId; 
@@ -63,7 +63,7 @@ router.patch('/:id', async (req, res) => {
   try {
     const { content, color, x, y } = req.body;
     const updatedNote = await prisma.note.update({
-      where: { id: req.params.id.toString() }, // Convert id to string
+      where: { id: req.params.id.toString() },
       data: {
         content,
         color,
@@ -80,11 +80,11 @@ router.patch('/:id', async (req, res) => {
   }
 });
   
- // Delete a note by ID
+
  router.delete('/:id', async (req, res) => {
   try {
     await prisma.note.delete({
-      where: { id: req.params.id.toString() }, // Convert id to integer
+      where: { id: req.params.id.toString() }, 
     });
 
     res.json({ message: 'Note deleted successfully' });
