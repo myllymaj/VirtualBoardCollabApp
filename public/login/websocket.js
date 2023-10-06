@@ -6,7 +6,7 @@ async function updateNote(noteId, updatedData) {
     try {
         const checkToken = localStorage.getItem("jwtToken")
 
-        const response = await fetch(`https://virtualboardcollabapp.azurewebsites.net/${noteId}`, {
+        const response = await fetch(`https://virtualboardcollabapp.azurewebsites.net/notes/${noteId}`, {
             method: 'PATCH',
             headers: {
                 Authorization: 'Bearer ' + checkToken,
@@ -452,10 +452,10 @@ document.addEventListener("DOMContentLoaded", () => {
                             if (e.target.classList.contains("delete-button")) {
                                 e.target.parentElement.remove();
                             }
-        
+                            const noteId = note.id
                             socket.send(JSON.stringify({
                                 type: 'deleteNote',
-                                id: saveId,
+                                id: noteId,
                                 boardId: boardId,
                             }));
                         } else {
@@ -479,6 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 textarea.placeholder = "Type your note here...";
                 const noted = note.id
                 noteElement.id = noteId;
+                const xdid = note.id
                 textarea.addEventListener("input", (e) => {
 
 
@@ -490,8 +491,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         y: parseFloat(noteElement.style.top),
                         boardId: boardId,
                     };
-
-                    updateNote(noted, updatedData);
+                    const noted = note.id
+                    updateNote(xdid, updatedData);
 
                     socket.send(JSON.stringify({
                         type: 'paste',
