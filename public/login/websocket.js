@@ -5,7 +5,7 @@
 async function updateNote(noteId, updatedData) {
     try {
         const checkToken = localStorage.getItem("jwtToken")
-
+//http://localhost:3030/
         const response = await fetch(`https://virtualboardcollabapp.azurewebsites.net/notes/${noteId}`, {
             method: 'PATCH',
             headers: {
@@ -128,7 +128,7 @@ window.createWebSocketConnection = function () {
     const boardId = localStorage.getItem('currentBoardId');
     const WS_TOKEN = localStorage.getItem('access_token');
 
-
+    //http://localhost:5000/
     const WS_URL = `wss://vbwebsocket.azurewebsites.net?token=${WS_TOKEN}&board_id=${boardId}`;
     //console.log(WS_URL);
 
@@ -187,6 +187,7 @@ window.createWebSocketConnection = function () {
             deleteButton.addEventListener("click", async (e) => {
                 try {
                     const checkToken = localStorage.getItem("jwtToken")
+                    //http://localhost:3030/
                     const deleteResponse = await fetch(`https://virtualboardcollabapp.azurewebsites.net/notes/${nott}`, {
                         method: 'DELETE',
                         headers: {
@@ -374,7 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const xd = localStorage.getItem('currentBoardId');
             displayNotesForCurrentBoard(xd);
 
-
+//http://localhost:3030/
             const response = await fetch(`https://virtualboardcollabapp.azurewebsites.net/notes/?boardId=${boardId}`, {
                 method: 'GET',
                 headers: {
@@ -439,6 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 deleteButton.addEventListener("click", async (e) => {
                     try {
                         const checkToken = localStorage.getItem("jwtToken")
+                        //http://localhost:3030/
                         const deleteResponse = await fetch(`https://virtualboardcollabapp.azurewebsites.net/notes/${noteId}`, {
                             method: 'DELETE',
                             headers: {
@@ -661,7 +663,7 @@ document.addEventListener("DOMContentLoaded", () => {
             y: y,
             boardId: currentBoardId,
         };
-
+//http://localhost:3030/
         const response = await fetch('https://virtualboardcollabapp.azurewebsites.net/notes', {
             method: 'POST',
             headers: {
@@ -769,6 +771,8 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteButton.addEventListener("click", async (e) => {
             try {
                 const checkToken = localStorage.getItem("jwtToken")
+
+                //http://localhost:3030/
                 const deleteResponse = await fetch(`https://virtualboardcollabapp.azurewebsites.net/notes/${saveId}`, {
                     method: 'DELETE',
                     headers: {

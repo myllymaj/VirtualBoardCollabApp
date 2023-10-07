@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //console.log("Cookie sparad "+localStorage.getItem("jwtToken"));
 
     populateDropdown();
+    
   }
 
 
@@ -69,7 +70,7 @@ loginForm.addEventListener('submit', async function (event) {
   const tokenDisplay = document.getElementById('tokenDisplay');
 
 
-
+//http://localhost:3030/
   const apiUrl = 'https://virtualboardcollabapp.azurewebsites.net/users/login';
 
   try {
@@ -169,7 +170,7 @@ async function populateDropdown() {
 
     dropdown.innerHTML = '';
     for (const id of userBoards) {
-
+//http://localhost:3030/
       const response = await fetch(`https://virtualboardcollabapp.azurewebsites.net/board/${id}`, {
         method: 'GET',
         headers: {
@@ -194,6 +195,7 @@ async function populateDropdown() {
     const initiallySelectedValue = dropdown.value;
     localStorage.setItem("currentBoardId", dropdown.value)
     // console.log('Initially selected value:', initiallySelectedValue);
+    window.getNotesByBoardId(initiallySelectedValue);
   } catch (error) {
     console.error('Error:', error);
   }
@@ -255,7 +257,7 @@ registrationForm.addEventListener("submit", function (event) {
     boards: ["651b00fc54de3de09dd28dbc"]
   };
 
-
+//http://localhost:3030/
   fetch('https://virtualboardcollabapp.azurewebsites.net/users', {
     method: 'POST',
     headers: {
