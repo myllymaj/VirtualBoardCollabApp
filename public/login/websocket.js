@@ -6,7 +6,7 @@ async function updateNote(noteId, updatedData) {
     try {
         const checkToken = localStorage.getItem("jwtToken")
 //http://localhost:3030/
-        const response = await fetch(`https://virtualboardcollabapp.azurewebsites.net/notes/${noteId}`, {
+        const response = await fetch(`http://localhost:3030/notes/${noteId}`, {
             method: 'PATCH',
             headers: {
                 Authorization: 'Bearer ' + checkToken,
@@ -129,7 +129,7 @@ window.createWebSocketConnection = function () {
     const WS_TOKEN = localStorage.getItem('access_token');
 
     //http://localhost:5000/
-    const WS_URL = `wss://vbwebsocket.azurewebsites.net?token=${WS_TOKEN}&board_id=${boardId}`;
+    const WS_URL = `ws://localhost:5000/?token=${WS_TOKEN}&board_id=${boardId}`;
     //console.log(WS_URL);
 
 
@@ -188,7 +188,7 @@ window.createWebSocketConnection = function () {
                 try {
                     const checkToken = localStorage.getItem("jwtToken")
                     //http://localhost:3030/
-                    const deleteResponse = await fetch(`https://virtualboardcollabapp.azurewebsites.net/notes/${nott}`, {
+                    const deleteResponse = await fetch(`http://localhost:3030/notes/${nott}`, {
                         method: 'DELETE',
                         headers: {
                             Authorization: 'Bearer ' + checkToken,
@@ -376,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
             displayNotesForCurrentBoard(xd);
 
 //http://localhost:3030/
-            const response = await fetch(`https://virtualboardcollabapp.azurewebsites.net/notes/?boardId=${boardId}`, {
+            const response = await fetch(`http://localhost:3030/notes/?boardId=${boardId}`, {
                 method: 'GET',
                 headers: {
                     Authorization: 'Bearer ' + checkToken,
@@ -441,7 +441,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     try {
                         const checkToken = localStorage.getItem("jwtToken")
                         //http://localhost:3030/
-                        const deleteResponse = await fetch(`https://virtualboardcollabapp.azurewebsites.net/notes/${noteId}`, {
+                        const deleteResponse = await fetch(`http://localhost:3030/notes/${noteId}`, {
                             method: 'DELETE',
                             headers: {
                                 Authorization: 'Bearer ' + checkToken,
@@ -590,10 +590,7 @@ document.addEventListener("DOMContentLoaded", () => {
             //console.error('Error fetching notes:', error);
         }
     }
-    const boarded = localStorage.getItem('currentBoardId');
-    if (boarded !== null) {
-        window.getNotesByBoardId(boarded);
-    }
+    
 
 
     //////////////////////////////////////////////////////////////skapa note knapp
@@ -664,7 +661,7 @@ document.addEventListener("DOMContentLoaded", () => {
             boardId: currentBoardId,
         };
 //http://localhost:3030/
-        const response = await fetch('https://virtualboardcollabapp.azurewebsites.net/notes', {
+        const response = await fetch('http://localhost:3030/notes', {
             method: 'POST',
             headers: {
                 Authorization: 'Bearer ' + checkToken,
@@ -773,7 +770,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const checkToken = localStorage.getItem("jwtToken")
 
                 //http://localhost:3030/
-                const deleteResponse = await fetch(`https://virtualboardcollabapp.azurewebsites.net/notes/${saveId}`, {
+                const deleteResponse = await fetch(`http://localhost:3030/notes/${saveId}`, {
                     method: 'DELETE',
                     headers: {
                         Authorization: 'Bearer ' + checkToken,

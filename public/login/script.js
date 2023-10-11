@@ -59,7 +59,9 @@ function clearContainers() {
     app.innerHTML = "";
   }
 }
-
+window.onbeforeunload = function () {
+  clearContainers();
+};
 //login
 
 loginForm.addEventListener('submit', async function (event) {
@@ -71,7 +73,8 @@ loginForm.addEventListener('submit', async function (event) {
 
 
 //http://localhost:3030/
-  const apiUrl = 'https://virtualboardcollabapp.azurewebsites.net/users/login';
+  const apiUrl = 'http://localhost:3030/users/login';
+
 
   try {
 
@@ -171,7 +174,7 @@ async function populateDropdown() {
     dropdown.innerHTML = '';
     for (const id of userBoards) {
 //http://localhost:3030/
-      const response = await fetch(`https://virtualboardcollabapp.azurewebsites.net/board/${id}`, {
+      const response = await fetch(`http://localhost:3030/board/${id}`, {
         method: 'GET',
         headers: {
           Authorization: 'Bearer ' + checkToken,
@@ -258,7 +261,7 @@ registrationForm.addEventListener("submit", function (event) {
   };
 
 //http://localhost:3030/
-  fetch('https://virtualboardcollabapp.azurewebsites.net/users', {
+  fetch('http://localhost:3030/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
